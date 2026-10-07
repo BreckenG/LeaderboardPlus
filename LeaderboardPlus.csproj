@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>LeaderboardPlus</AssemblyName>
+    <RootNamespace>LeaderboardPlus</RootNamespace>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>10</LangVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <NoWarn>$(NoWarn);CS0162;CS0414;CS0649</NoWarn>
+    <GtRoot Condition="'$(GtRoot)' == ''">C:/Program Files (x86)/Steam/steamapps/common/Gorilla Tag</GtRoot>
+    <GtManaged Condition="'$(GtManaged)' == ''">$(GtRoot)/Gorilla Tag_Data/Managed</GtManaged>
+    <GtCore Condition="'$(GtCore)' == ''">$(GtRoot)/BepInEx/core</GtCore>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="src\**\*.cs" />
+    <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <Target Name="ClearReferenceCopyLocal" AfterTargets="ResolveAssemblyReferences">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" />
+    </ItemGroup>
+  </Target>
+
+  <ItemGroup>
+    <Reference Include="0Harmony"><HintPath>$(GtCore)/0Harmony.dll</HintPath></Reference>
+    <Reference Include="BepInEx"><HintPath>$(GtCore)/BepInEx.dll</HintPath></Reference>
+    <Reference Include="Assembly-CSharp" Publicize="true"><HintPath>$(GtManaged)/Assembly-CSharp.dll</HintPath></Reference>
+    <Reference Include="Assembly-CSharp-firstpass"><HintPath>$(GtManaged)/Assembly-CSharp-firstpass.dll</HintPath></Reference>
+    <Reference Include="Photon3Unity3D"><HintPath>$(GtManaged)/Photon3Unity3D.dll</HintPath></Reference>
+    <Reference Include="PhotonRealtime"><HintPath>$(GtManaged)/PhotonRealtime.dll</HintPath></Reference>
+    <Reference Include="PhotonUnityNetworking"><HintPath>$(GtManaged)/PhotonUnityNetworking.dll</HintPath></Reference>
+    <Reference Include="PhotonVoice"><HintPath>$(GtManaged)/PhotonVoice.dll</HintPath></Reference>
+    <Reference Include="PhotonVoice.API"><HintPath>$(GtManaged)/PhotonVoice.API.dll</HintPath></Reference>
+    <Reference Include="PhotonVoice.PUN"><HintPath>$(GtManaged)/PhotonVoice.PUN.dll</HintPath></Reference>
+    <Reference Include="Fusion.Runtime"><HintPath>$(GtManaged)/Fusion.Runtime.dll</HintPath></Reference>
+    <Reference Include="Unity.TextMeshPro"><HintPath>$(GtManaged)/Unity.TextMeshPro.dll</HintPath></Reference>
+    <Reference Include="Unity.Localization"><HintPath>$(GtManaged)/Unity.Localization.dll</HintPath></Reference>
+    <Reference Include="Unity.Collections"><HintPath>$(GtManaged)/Unity.Collections.dll</HintPath></Reference>
+    <Reference Include="UnityEngine"><HintPath>$(GtManaged)/UnityEngine.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(GtManaged)/UnityEngine.CoreModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.AudioModule"><HintPath>$(GtManaged)/UnityEngine.AudioModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.PhysicsModule"><HintPath>$(GtManaged)/UnityEngine.PhysicsModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.UI"><HintPath>$(GtManaged)/UnityEngine.UI.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.UIModule"><HintPath>$(GtManaged)/UnityEngine.UIModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.TextRenderingModule"><HintPath>$(GtManaged)/UnityEngine.TextRenderingModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.TextCoreFontEngineModule"><HintPath>$(GtManaged)/UnityEngine.TextCoreFontEngineModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.TextCoreTextEngineModule"><HintPath>$(GtManaged)/UnityEngine.TextCoreTextEngineModule.dll</HintPath></Reference>
+  </ItemGroup>
+</Project>
